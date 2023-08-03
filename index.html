@@ -11,23 +11,24 @@
 
 <body>
 
-    <section>
-        <div class="row" id="search-bar">
-            <div class="col-6">
-                <form id="search" class="form-inline">
-                    <label class="sr-only" for="inlineFormInputName2">Name</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="search-input"
-                        placeholder="search name ...">
-                    <button type="submit" class="btn mb-2">Search</button>
-                </form>
+    <header>
+        <div class="nav-container">
+            <p class="logo">
+                Binge!!! <span>Movies</span>
+            </p>
+            <div class="navbar">
+                <a href="index.html" class="nav-link nav-active">
+                <span class="nav-link-title">Home</span>
+                </a>
+                <a href="#topdiv" class="nav-link">
+                <span class="nav-link-title">Top Movies</span>
+                </a>
+                <a href="#movies-container" class="nav-link">
+                <span class="nav-link-title">Movie Lists</span>
+                </a>
             </div>
         </div>
-    </section>
-
-    <section id="movie-suggestions" style="display: none;">
-        <div class="container row1" id="movie-cards">
-        </div>
-    </section>
+    </header>
 
     <div class="container mt-5">
 
@@ -55,17 +56,43 @@
     </div>
     </section>
 
-    <div class="container mt-5">
+    <section>
+        <div class="row" id="search-bar">
+            <div class="col-6">
+                <form id="search" class="form-inline">
+                    <label class="sr-only" for="inlineFormInputName2">Name</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="search-input"
+                        placeholder="search name ...">
+                    <button type="submit" class="btn mb-2">Search</button>
+                    <button class="btn mb-2" id="clearButton">Clear Search</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
+    <section id="movie-suggestions" style="display: none;" class="container">
+        <div class="row1" id="movie-cards">
+        </div>
+    </section>
+
+    <div class="container mt-5">
+        <div id="hiding">
         <section class="top-container container" id="topdiv">
             <div class="heading">
-                <h2 class="heading-title">Popular Movies</h2>
+                <h2 class="heading-title">Movies List</h2>
             </div>
             <div id="movies-container">
 
             </div>
         </div>
     </section>
+</div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Movie App. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

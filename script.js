@@ -49,25 +49,30 @@ fetch(TOP_URL)
 
   // Display movie cards 
 
-  async function fetchPopularMovies() {
-    try {
-      const response = await fetch(`${POPULAR_URL}?${API_KEY}`);
-      const data = await response.json();
-      return data.results;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return [];
-    }
+  let currentPage = 1;
+  const moviesPerPage = 10;
+  let isLoading = false;
+
+  async function fetchPopularMovies(page)
+ {
+  try {
+    const response = await fetch(`${POPULAR_URL}?${API_KEY}&page=${page}`);
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
   }
+}
 
   function displayMovieCards(movies) {
-    const moviesContainer = document.getElementById('movies-container');
-
+    const moviesContainer = document.getElementById('movies-container')
+  
     if (Array.isArray(movies) && movies.length > 0) {
     movies.forEach(movie => {
       const movieCard = document.createElement('div');
       movieCard.className = 'movie-card';
-
+     
       const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
       const moviePoster = document.createElement('img');
@@ -86,15 +91,34 @@ fetch(TOP_URL)
       movieCard.appendChild(moviePoster);
       movieCard.appendChild(movieTitle);
       moviesContainer.appendChild(movieCard);
+   
     });
   } else {
     moviesContainer.textContent = 'No movies found.';
   }
+  
 }
-  window.onload = async function () {
-    const movies = await fetchPopularMovies();
+
+async function loadMoreMovies() {
+  if (!isLoading) {
+    isLoading = true;
+    currentPage++;
+    const movies = await fetchPopularMovies(currentPage);
     displayMovieCards(movies);
-  };
+    isLoading = false;
+  }
+}
+window.onload = async function () {
+  const movies = await fetchPopularMovies(currentPage);
+  displayMovieCards(movies);
+
+  window.addEventListener('scroll', () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 5) {
+      loadMoreMovies();
+    }
+  });
+};
 
   // Search Input 
   
@@ -102,41 +126,56 @@ fetch(TOP_URL)
   const searchInput = document.getElementById('search-input');
   const movieSuggestionsSection = document.getElementById('movie-suggestions');
   const movieCardsContainer = document.getElementById('movie-cards');
+
+  let currentPage1 = 1;
+  let isLoading1 = false;
   
   searchForm.addEventListener('submit', function(event) {
       event.preventDefault();
       const searchQuery = searchInput.value.trim();
       if (searchQuery.length > 0) {
-          fetchMovieSuggestions(searchQuery);
+        currentPage1 = 1;
+          fetchMovieSuggestions(searchQuery, currentPage1);
       }
   });
   
-  function fetchMovieSuggestions(query) {
-      const url = `https://api.themoviedb.org/3/search/movie?${API_KEY}&query=${query}`;
+  function fetchMovieSuggestions(query, page) {
+      const url = `https://api.themoviedb.org/3/search/movie?${API_KEY}&query=${query}&page=${page}`;
       
       fetch(url)
           .then(response => response.json())
           .then(data => {
-              movieCardsContainer.innerHTML = '';
-  
               if (data.results && data.results.length > 0) {
+                if (page === 1) {
+                  movieCardsContainer.innerHTML = '';
+                }
                   data.results.forEach(movie => {
                       const movieCard = createMovieCard(movie);
                       movieCardsContainer.appendChild(movieCard);
                   });
                   movieSuggestionsSection.style.display = 'block';
+                  isLoading1 = false;
+                  const classHiding = document.getElementById('hiding')
+                  classHiding.style.display = 'none';
               } else {
-                  movieSuggestionsSection.style.display = 'none';
+                if (page === 1) {
+                  movieCardsContainer.innerHTML = '<p>No results found.</p>';
+                  movieSuggestionsSection.style.display = 'block';
+                  const classHiding = document.getElementById('hiding')
+                  classHiding.style.display = 'none';
+                }
+                isLoading1 = false;
               }
           })
           .catch(error => {
               console.error('Error fetching movie suggestions:', error);
+              isLoading1 = false;
           });
   }
   
   function createMovieCard(movie){
       const movieCard = document.createElement('div');
-      movieCard.classList.add('col-4');
+      movieCard.classList.add('col-4', 'searchResults');
   
       const cardContent = `
           <div class="card mb-3">
@@ -156,3 +195,25 @@ fetch(TOP_URL)
 
       return movieCard;
   }
+
+  window.addEventListener('scroll', () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  
+    if (scrollTop + clientHeight >= scrollHeight - 5 && !isLoading1) {
+      isLoading1 = true;
+      currentPage1++;
+      const searchQuery = searchInput.value.trim();
+      fetchMovieSuggestions(searchQuery, currentPage1);
+    }
+  });
+
+  // clear search function
+
+ const clearButton = document.getElementById("clearButton")
+
+ clearButton.addEventListener('click', function(){
+  movieSuggestionsSection.style.display = 'none';
+  const classHiding = document.getElementById('hiding')
+  classHiding.style.display = 'block';
+  searchForm.reset();
+ })
