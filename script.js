@@ -214,5 +214,6 @@ clearButton.addEventListener("click", function () {
   movieSuggestionsSection.style.display = "none";
   const classHiding = document.getElementById("hiding");
   classHiding.style.display = "block";
+  searchApi = 'home'
   searchForm.reset();
 });
