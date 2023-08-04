@@ -1,0 +1,277 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    scroll-padding-top: 2rem;
+    overflow-x: hidden;
+}
+
+body{
+    background-color:rgb(211, 242, 251) ;
+}
+
+/* navbar css  */
+
+header .nav-container {
+    background-color: rgb(0, 104, 133);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .logo {
+    font-size: 24px;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .logo span {
+    color: #ffcc00;
+  }
+
+  .navbar {
+    display: flex;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+  }
+  
+  .nav-link:hover {
+    background-color: white;
+  }
+  
+  .nav-link-title {
+    margin-left: 5px;
+  }
+  
+  .nav-link.nav-active {
+    background-color: #ffcc00;
+    color: #333;
+  }
+
+  /* carousel css  */
+
+.top-container{
+    max-width: 1060px;
+    margin: auto;
+    margin-top: -50px;
+    width: 100%;
+    background-color: rgb(0, 104, 133);
+}
+
+section{
+    padding: 3rem 0 3rem;
+}
+
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    margin-top: 10px;
+    color: blueviolet;
+    background-color: rgb(252, 245, 232);
+}
+
+.carousel-inner img {
+    padding-top: 30px;
+    max-width: 400px;
+    max-height: 600px;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+  
+  .carousel-indicators {
+    bottom: 10px;
+    left: 35%;
+    transform: translateX(-50%);
+  }
+
+  /* search css */
+
+  .row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    background-color: rgb(0, 104, 133) ;
+  }
+
+  .searchResults {
+    flex: unset !important;
+    width: 14rem;
+  }
+
+  .col-6 .btn{
+    background-color: green;
+    color: white;
+    margin: 2px;
+  }
+
+.form-control{
+    width: 55% !important;
+}
+
+  /* movie lists css  */
+
+  #movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 80px;
+  }
+
+  .movie-card {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+  }
+
+  .movie-poster {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .movie-title {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  /* search css  */
+
+  #movie-suggestions {
+    max-width: 1060px;
+    margin: auto;
+    width: 100%;
+    background-color: rgb(0, 104, 133);
+    margin-bottom: 8rem;
+}
+.row1{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 3.5rem;
+    background-color: rgb(0, 104, 133);
+    padding-top: 20px;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    height: 25rem;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.card-title {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.card-text {
+    text-align: center;
+    font-size: 1rem;
+    color: #555;
+}
+
+.card-body {
+    padding: unset !important;
+}
+
+#movie-cards p{
+    font-weight: bold;
+    color: white;
+}
+
+/* movie detail css  */
+
+#movie-detail-container img{
+    height: 300px;
+    width: 200px;
+    margin: 10px;
+}
+
+#movie-detail-container h2{
+    margin: 10px;
+}
+
+#movie-detail-container p{
+    margin: 10px;
+}
+
+#movie-detail-container a{
+    margin: 10px;
+    text-decoration: none;
+}
+
+#movie-detail-container h3{
+    margin: 10px;
+}
+
+.cast-member{
+    float: left;
+    width: 20%;
+    padding: 5px;
+}
+
+.cast-member p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cast-member img{
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+#movie-detail-container .trailer-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: blueviolet;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+  }
+
+  /* footer css  */
+
+  footer {
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgb(0, 104, 133);
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: white;
+}
